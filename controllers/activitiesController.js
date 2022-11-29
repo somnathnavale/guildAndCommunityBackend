@@ -1,6 +1,6 @@
 const Activity = require('../models/activitiesModel');
 
-const createActivity = async (req, res, next) => {
+const createActivity = async (req, res) => {
 
     if(!req.body.title) return res.status(400).send({ msg: 'Name field is required!' });
     if(!req.body.description) return res.status(400).send({ msg: 'Description field is required!' });
@@ -27,11 +27,9 @@ const createActivity = async (req, res, next) => {
         res.status(500).send({ msg: 'Oops! Something went wrong.' });
 
     }
-
-    next();
 };
 
-const getActivities = async (req, res, next) => { 
+const getActivities = async (req, res) => { 
     
     try{
 
@@ -43,11 +41,9 @@ const getActivities = async (req, res, next) => {
         res.status(500).send({ msg: 'Oops! Something went wrong.' });
 
     }
-
-    next();
 };
 
-const getActivityById = async (req, res, next) => {
+const getActivityById = async (req, res) => {
     try{
 
         const activity = await Activity.findById(req.params.id);
@@ -61,11 +57,9 @@ const getActivityById = async (req, res, next) => {
         res.status(500).send({ msg: 'Oops! Something went wrong.' });
 
     }
-
-    next();
 };
 
-const updateActivity = async (req, res, next) => {
+const updateActivity = async (req, res) => {
 
     try{
 
@@ -85,11 +79,9 @@ const updateActivity = async (req, res, next) => {
         res.status(500).send({ msg: 'Oops! Something went wrong.' });
     
     }
-
-    next();
 };
 
-const deleteActivity = async (req, res, next) => {
+const deleteActivity = async (req, res) => {
     
     try{
 
@@ -102,8 +94,6 @@ const deleteActivity = async (req, res, next) => {
     }catch(error){
         res.status(500).send({ msg: 'Oops! Something went wrong.' });
     }
-
-    next();
 };
 
 module.exports = {

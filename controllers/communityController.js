@@ -52,7 +52,7 @@ const getCommunities = async (req, res) => {
     }
 };
 
-const getCommunityById = async(req, res, next) => {
+const getCommunityById = async(req, res) => {
 
     try{
 
@@ -69,7 +69,7 @@ const getCommunityById = async(req, res, next) => {
     }
 };
 
-const updateCommunity = async (req, res, next) => {
+const updateCommunity = async (req, res) => {
 
     try{
         const updatedCommunity = await Community.findByIdAndUpdate({ _id: req.params.id }, {
@@ -88,7 +88,7 @@ const updateCommunity = async (req, res, next) => {
     }
 };
 
-const deleteCommunity = async (req, res, next) => {
+const deleteCommunity = async (req, res) => {
     
     try{
 
