@@ -1,11 +1,11 @@
 const Community = require('../models/communityModel');
 const Activity = require('../models/activitiesModel');
 
-const createCommunity = async (req, res, next) => {
+const createCommunity = async (req, res) => {
 
-    if(!req.body.name) return res.status(404).send({ msg: 'Name field is required!' });
-    if(!req.body.description) return res.status(404).send({ msg: 'Description field is required!' });
-    if(!req.body.fileLink) return res.status(404).send({ msg: 'FileLink field is required!' });
+    if(!req.body.name) return res.status(400).send({ msg: 'Name field is required!' });
+    if(!req.body.description) return res.status(400).send({ msg: 'Description field is required!' });
+    if(!req.body.fileLink) return res.status(400).send({ msg: 'FileLink field is required!' });
     
     const community = new Community({
         name: req.body.name,
@@ -25,11 +25,9 @@ const createCommunity = async (req, res, next) => {
         res.status(400).json(error);
 
     }
-
-    next();
 };
 
-const getAllCommunities = async (req, res, next) => {
+const getAllCommunities = async (req, res) => {
     try{
 
         const communities = await Community.find({}, 'name');
@@ -40,11 +38,9 @@ const getAllCommunities = async (req, res, next) => {
         res.status(500).send({ msg: 'Oops! Something went wrong.' });
 
     }
-
-    next();
 }
 
-const getCommunities = async (req, res, next) => {
+const getCommunities = async (req, res) => {
     
     try{
 
@@ -54,8 +50,6 @@ const getCommunities = async (req, res, next) => {
     }catch(error){
         res.status(500).send({ msg: 'Oops! Something went wrong.' });
     }
-
-    next();
 };
 
 const getCommunityById = async(req, res, next) => {
@@ -73,8 +67,6 @@ const getCommunityById = async(req, res, next) => {
         res.status(500).send({ msg: 'Oops! Something went wrong.' });
 
     }
-
-    next();
 };
 
 const updateCommunity = async (req, res, next) => {
@@ -94,8 +86,6 @@ const updateCommunity = async (req, res, next) => {
         res.status(500).send({ msg: 'Oops! Something went wrong.' });
 
     }
-
-    next();
 };
 
 const deleteCommunity = async (req, res, next) => {
@@ -115,8 +105,6 @@ const deleteCommunity = async (req, res, next) => {
         res.status(500).send({ msg: 'Oops! Something went wrong.' });
 
     }
-
-    next();
 };
 
 module.exports = {

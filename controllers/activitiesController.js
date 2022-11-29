@@ -2,11 +2,11 @@ const Activity = require('../models/activitiesModel');
 
 const createActivity = async (req, res, next) => {
 
-    if(!req.body.title) return res.status(404).send({ msg: 'Name field is required!' });
-    if(!req.body.description) return res.status(404).send({ msg: 'Description field is required!' });
-    if(!req.body.pointers.length) return res.status(404).send({ msg: 'Pointers field is required!' });
-    if(!req.body.presenter.length) return res.status(404).send({ msg: 'Presenter field is required!' });
-    if(!req.body.date) return res.status(404).send({ msg: 'Date field is required!' });
+    if(!req.body.title) return res.status(400).send({ msg: 'Name field is required!' });
+    if(!req.body.description) return res.status(400).send({ msg: 'Description field is required!' });
+    if(!req.body.pointers.length) return res.status(400).send({ msg: 'Pointers field is required!' });
+    if(!req.body.presenter.length) return res.status(400).send({ msg: 'Presenter field is required!' });
+    if(!req.body.date) return res.status(400).send({ msg: 'Date field is required!' });
 
     const activity = new Activity({
         title: req.body.title,

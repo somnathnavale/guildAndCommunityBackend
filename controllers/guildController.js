@@ -2,7 +2,7 @@ const Guild = require('../models/guildModel');
 const Community = require('../models/communityModel');
 const Activity = require('../models/activitiesModel');
 
-const createGuild = async (req, res, next) => {
+const createGuild = async (req, res) => {
 
     if(!req.body.name) return res.status(400).send({ msg: 'Name field is required!'});
     if(!req.body.polestar.length) return res.status(400).send({ msg: 'Polestar field is required!'});
@@ -35,11 +35,9 @@ const createGuild = async (req, res, next) => {
         res.status(500).send({ msg: 'Oops! Something went wrong.' });
 
     }
-
-    next();
 };
 
-const getGuilds = async (req, res, next) => { 
+const getGuilds = async (req, res) => { 
     
     try{
 
@@ -51,11 +49,9 @@ const getGuilds = async (req, res, next) => {
         res.status(500).send({ msg: 'Oops! Something went wrong.' });
 
     }
-
-    next();
 };
 
-const getGuildById = async(req, res, next) => {
+const getGuildById = async(req, res) => {
 
     try{
         const guild = await Guild.findById(req.params.id);
@@ -69,8 +65,6 @@ const getGuildById = async(req, res, next) => {
         res.status(500).send({ msg: 'Oops! Something went wrong.' });
 
     }
-
-    next();
 };
 
 const updateGuild = async (req, res, next) => {
@@ -92,8 +86,6 @@ const updateGuild = async (req, res, next) => {
         res.status(500).send({ msg: 'Oops! Something went wrong.' });
 
     }
-
-    next();
 };
 
 const deleteGuild = async (req, res, next) => {
@@ -119,8 +111,6 @@ const deleteGuild = async (req, res, next) => {
         res.status(500).json(error);
 
     }
-
-    next();
 };
 
 module.exports = {
