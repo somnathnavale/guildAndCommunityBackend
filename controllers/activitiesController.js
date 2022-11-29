@@ -35,7 +35,7 @@ const getActivities = async (req, res, next) => {
     
     try{
 
-        const activities = await Activity.find();
+        const activities = await Activity.find({ cid: req.params.cid });
         res.status(200).json(activities);
 
     }catch(error){

@@ -1,4 +1,5 @@
 const Community = require('../models/communityModel');
+const Activity = require('../models/activitiesModel');
 
 const createCommunity = async (req, res, next) => {
 
@@ -32,7 +33,7 @@ const getCommunities = async (req, res, next) => {
     
     try{
 
-        const communities = await Community.find();
+        const communities = await Community.find({ gid: req.params.gid });
         res.status(200).json(communities);
 
     }catch(error){
@@ -85,6 +86,9 @@ const updateCommunity = async (req, res, next) => {
 const deleteCommunity = async (req, res, next) => {
     
     try{
+
+        await Activity.deleteMany({ cid: req.params.id });
+
         const found = await Community.findByIdAndDelete(req.params.id)
 
         if(!found) return res.status(404).send({ msg: `Community with id ${req.params.id} not found!` })

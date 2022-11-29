@@ -7,6 +7,7 @@ const communitySchema = mongoose.Schema({
     },
     gid: {
         type: mongoose.Schema.Types.ObjectId,
+        ref: 'Guild',
         required: true
     },
     description: {
@@ -23,4 +24,4 @@ const communitySchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Communities', communitySchema);
+module.exports = mongoose.model('Community', communitySchema);

@@ -1,4 +1,6 @@
 const Guild = require('../models/guildModel');
+const Community = require('../models/communityModel');
+const Activity = require('../models/activitiesModel');
 
 const createGuild = async (req, res, next) => {
 
@@ -97,6 +99,14 @@ const updateGuild = async (req, res, next) => {
 const deleteGuild = async (req, res, next) => {
     
     try{
+
+        const communities = await Community.find({ gid: req.params.id });
+        
+        for(let i = 0; i < communities.length; i++){
+            await Activity.deleteMany({ cid: communities[i]._id });
+        }
+
+        await Community.deleteMany({ gid: req.params.id });
 
         const found = await Guild.findByIdAndDelete(req.params.id);
 
