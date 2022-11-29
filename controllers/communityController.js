@@ -29,6 +29,21 @@ const createCommunity = async (req, res, next) => {
     next();
 };
 
+const getAllCommunities = async (req, res, next) => {
+    try{
+
+        const communities = await Community.find({}, 'name');
+        res.status(200).json(communities);
+
+    }catch(error){
+
+        res.status(500).send({ msg: 'Oops! Something went wrong.' });
+
+    }
+
+    next();
+}
+
 const getCommunities = async (req, res, next) => {
     
     try{
@@ -107,6 +122,7 @@ const deleteCommunity = async (req, res, next) => {
 module.exports = {
     createCommunity,
     getCommunities,
+    getAllCommunities,
     getCommunityById,
     updateCommunity,
     deleteCommunity

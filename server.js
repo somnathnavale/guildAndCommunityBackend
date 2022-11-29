@@ -6,6 +6,7 @@ const connectDB = require('./db/connectDB');
 const guildRoutes = require('./routes/guildRoutes');
 const communityRoutes = require('./routes/communityRoutes');
 const activityRoutes = require('./routes/activityRoutes');
+const allCommunitiesRoutes = require('./routes/allCommunitiesRoutes')
 
 connectDB(process.env.MONGO_URI);
 
@@ -17,6 +18,7 @@ app.use(cors());
 app.use('/guild', guildRoutes);
 app.use('/guild', communityRoutes);
 app.use('/guild', activityRoutes);
+app.use('/communities', allCommunitiesRoutes)
 
 
 mongoose.connection.once('open',()=>{
