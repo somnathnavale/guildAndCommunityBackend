@@ -9,4 +9,4 @@ const connectDB = async (MONGO_URI) => {
     }
 }
 
-module.exports=connectDB;
+module.exports = connectDB;
